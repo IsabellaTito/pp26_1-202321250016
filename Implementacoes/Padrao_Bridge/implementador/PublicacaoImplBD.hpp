@@ -15,6 +15,6 @@ class PublicacaoImplBD : public Implementador{
         PublicacaoImplBD(){}
 
         string getDados(Publicacao *tipo) override {
-            return "Pegando dados com BD";
+            return "Metodo getDados() com *** BD *** foi chamado";
         }
 };

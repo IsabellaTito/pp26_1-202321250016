@@ -11,15 +11,15 @@ class Revista : public Publicacao{
         Revista(Implementador *imp):Publicacao(imp){};
 
         string getArtigo(){
-            return "Pegando artigo da revista";
+            return "Método getArtigo() de revista foi chamado";
         }
 
         string getTitulo() override {
-            return "Pegando titulo da revista";
+            return "Método getTitulo() de revista foi chamado";
         }
 
         string getAutor(int id = 0) override {
-            return "Pegando nome do autor da revista";
+            return "Método getAutor() de revista foi chamado";
         }
 
 

@@ -11,15 +11,15 @@ class Livro : public Publicacao{
         Livro(Implementador *imp):Publicacao(imp){}
 
         string getISBN(){
-            return "Pegando ISBN de livro";
+            return "Método getISBN() de livro foi chamado";
         }
 
         string getTitulo() override {
-            return "Pegando titulo de livro";
+            return "Método getTitulo() de livro foi chamado";
         }
 
         string getAutor(int id = 0) override {
-            return "Pegando nome do autor do livro";
+            return "Método getAutor() de livro foi chamado";
         }
 
     private:

@@ -15,6 +15,6 @@ class PublicacaoImplXML : public Implementador{
         PublicacaoImplXML(){}
         
         string getDados(Publicacao *tipo) override {
-            return "Pegando dados com XML";
+            return "Metodo getDados() com *** XML *** foi chamado";
         }
 };
