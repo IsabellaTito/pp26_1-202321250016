@@ -48,10 +48,7 @@ Após o sucesso do protótipo inicial, foi adicionada uma nova funcionalidade:
 
 ## 🧩 Modelagem UML
 
-```text
-Exemplo:
-![Modelagem UML](./docs/uml.png)
-```
+![Modelagem UML](Debate_Eleitores_L.png)
 
 ## ▶️ Como Executar
 
