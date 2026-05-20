@@ -4,7 +4,7 @@ Projeto desenvolvido como resolução de uma atividade acadêmica proposta em pr
 
 A proposta simula uma aplicação utilizada por apresentadores de rádio e televisão durante debates eleitorais, permitindo controlar o tempo de fala dos candidatos, alternar microfones automaticamente e até notificar eleitores em tempo real quando seu candidato estiver falando.
 
-A implementação deste projeto busca atender às seguintes questões propostas em prova.
+A UML que modela esse sistema pode ser vista em [UML Debate Eleitoral](Debate_Eleitores_L.png).
 
 ---
 
@@ -45,10 +45,6 @@ Após o sucesso do protótipo inicial, foi adicionada uma nova funcionalidade:
 ```
 
 ---
-
-## 🧩 Modelagem UML
-
-![Modelagem UML](Debate_Eleitores_L.png)
 
 ## ▶️ Como Executar
 
