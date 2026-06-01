@@ -10,11 +10,13 @@ using std::cout, std::endl;
 
 
 void MediadorDebate::setInquiridor(shared_ptr<ColaboradorPolitico> politico){
-    inquiridor = std::make_shared<Inquiridor>(*politico);
+    auto copia = politico->clone();
+    inquiridor = std::make_shared<Inquiridor>(*copia);
 }
 
 void MediadorDebate::setInquirido(shared_ptr<ColaboradorPolitico> politico){
-    inquirido = std::make_shared<Inquirido>(*politico);
+    auto copia = politico->clone();
+    inquirido = std::make_shared<Inquirido>(*copia);
 }
 
 shared_ptr<Inquiridor> MediadorDebate::getInquiridor() const{return inquiridor;}
