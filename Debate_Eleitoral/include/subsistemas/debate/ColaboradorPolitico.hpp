@@ -3,13 +3,14 @@
 #include <string>
 #include <memory>
 
+#include "subsistemas/debate/Prototipo.hpp"
 #include "shared/Microfone.hpp"
 #include "subsistemas/debate/MediadorBase.hpp"
 #include "subsistemas/eleitores/Politico.hpp"
 
 using std::string, std::shared_ptr, std::make_shared;
 
-class ColaboradorPolitico : public Politico{
+class ColaboradorPolitico : public Politico, public Prototipo{
     protected:
         string nome;
         string partido;
@@ -35,5 +36,7 @@ class ColaboradorPolitico : public Politico{
         void setMediador(MediadorBase* med){mediador = med;}
 
         bool getMicrofone(){return microfone->getMicrofone();}
+
+        shared_ptr<ColaboradorPolitico> clone() const override;
 
 };
