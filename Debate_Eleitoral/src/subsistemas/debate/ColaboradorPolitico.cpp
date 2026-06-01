@@ -11,3 +11,7 @@ ColaboradorPolitico::ColaboradorPolitico(const ColaboradorPolitico& outro)
       microfone(outro.microfone),
       mediador(outro.mediador)      
 {}
+
+shared_ptr<ColaboradorPolitico> ColaboradorPolitico::clone() const{
+    return std::make_shared<ColaboradorPolitico>(*this);
+}
