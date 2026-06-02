@@ -35,6 +35,7 @@ class ColaboradorPolitico : public Politico, public Prototipo{
 
         void setMediador(MediadorBase* med){mediador = med;}
 
+        void setMicrofone(shared_ptr<Microfone> micro){microfone=micro;}
         bool getMicrofone(){return microfone->getMicrofone();}
 
         shared_ptr<ColaboradorPolitico> clone() const override;
