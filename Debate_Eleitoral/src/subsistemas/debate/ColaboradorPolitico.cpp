@@ -1,7 +1,7 @@
 #include "subsistemas/debate/ColaboradorPolitico.hpp"
 
 ColaboradorPolitico::ColaboradorPolitico(string nome,string partido)
-    :nome(nome), partido(partido),inquiridor(false),microfone(make_shared<Microfone>()),mediador(nullptr){}
+    :nome(nome), partido(partido),inquiridor(false),microfone(nullptr),mediador(nullptr){}
 
 ColaboradorPolitico::ColaboradorPolitico(const ColaboradorPolitico& outro)
     : Politico(outro),
@@ -11,3 +11,7 @@ ColaboradorPolitico::ColaboradorPolitico(const ColaboradorPolitico& outro)
       microfone(outro.microfone),
       mediador(outro.mediador)      
 {}
+
+shared_ptr<ColaboradorPolitico> ColaboradorPolitico::clone() const{
+    return std::make_shared<ColaboradorPolitico>(*this);
+}

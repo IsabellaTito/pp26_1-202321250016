@@ -2,6 +2,8 @@
 
 #include "subsistemas/debate/ColaboradorPolitico.hpp"
 #include "subsistemas/ConfiguraTempo.hpp"
+#include "subsistemas/builder/InquiridoBuilder.hpp"
+#include "subsistemas/builder/InquiridorBuilder.hpp"
 #include "shared/LogSystem.hpp"
 
 #include <iostream>
@@ -10,11 +12,11 @@ using std::cout, std::endl;
 
 
 void MediadorDebate::setInquiridor(shared_ptr<ColaboradorPolitico> politico){
-    inquiridor = std::make_shared<Inquiridor>(*politico);
+    inquiridor = make_shared<Inquiridor>(*(InquiridorBuilder(politico).criarMicrofone().criarColaborador()));
 }
 
 void MediadorDebate::setInquirido(shared_ptr<ColaboradorPolitico> politico){
-    inquirido = std::make_shared<Inquirido>(*politico);
+    inquirido = make_shared<Inquirido>(*(InquiridoBuilder(politico).criarMicrofone().criarColaborador()));
 }
 
 shared_ptr<Inquiridor> MediadorDebate::getInquiridor() const{return inquiridor;}
