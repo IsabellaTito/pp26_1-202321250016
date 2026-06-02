@@ -88,7 +88,7 @@ void CLI::executarComando(const std::vector<std::string>& args){
     else if(args[0] == "iniciar" && args.size() >= 2 && args[1] == "debate") {
         fachada.executaDebate();
         std::cout << "Fim da seção de debate entre os candidatos." << std::endl;
-         std::cout << "Configure novamente para uma nova rodada!" << std::endl;
+         std::cout << "Configure os tempo novamente para uma nova rodada!" << std::endl;
     }
 
     // Help
