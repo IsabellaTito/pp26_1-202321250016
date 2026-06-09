@@ -57,9 +57,9 @@ void CLI::executarComando(const std::vector<std::string>& args){
         std::cout << "Eleitor cadastrado com sucesso." << std::endl;
     }
 
-    // configurar tempo <pergunta> <reposta> <replica> <treplica>
-    else if (args[0] == "configurar" && args.size() >= 6 && args[1] == "tempo") {
-        fachada.configuracaoTempo(std::stof(args[2]), std::stof(args[3]), std::stof(args[4]), std::stof(args[5]));
+    // configurar tempo <pergunta> <reposta> <replica> <treplica> <DR>
+    else if (args[0] == "configurar" && args.size() >= 7 && args[1] == "tempo") {
+        fachada.configuracaoTempo(std::stof(args[2]), std::stof(args[3]), std::stof(args[4]), std::stof(args[5]), std::stof(args[6]));
         std::cout << "Configurações de cronometro definidas com sucesso." << std::endl;
     }
 
@@ -88,19 +88,29 @@ void CLI::executarComando(const std::vector<std::string>& args){
     else if(args[0] == "iniciar" && args.size() >= 2 && args[1] == "debate") {
         fachada.executaDebate();
         std::cout << "Fim da seção de debate entre os candidatos." << std::endl;
-         std::cout << "Configure os tempo novamente para uma nova rodada!" << std::endl;
+        std::cout << "Debate finalizado. Inicie o direito de resposta." << std::endl;
     }
+
+    // Start DR session 
+    else if(args[0] == "iniciar" && args.size() >= 2 && args[1] == "DR") {
+        fachada.executarDR();
+        //std::cout << "Fim da seção de direito de Resposta." << std::endl;
+        //std::cout << "Debate finalizado. Inicie o direito de resposta." << std::endl;
+    }
+
+
 
     // Help
     else if(args[0] == "help" && args.size() >= 1) {
         std::cout << "Lista de comandos do sistem:" << std::endl;
         std::cout << "  * cadastrar politico <nome> <partido>" << std::endl;
         std::cout << "  * cadastrar eleitor <nome> <cpf> <nome-politico> <partido-politico>" << std::endl;
-        std::cout << "  * configurar tempo <pergunta> <reposta> <replica> <treplica>" << std::endl;
+        std::cout << "  * configurar tempo <pergunta> <reposta> <replica> <treplica> <DR>" << std::endl;
         //std::cout << "  * exibir log " << std::endl;
         std::cout << "  * sortear inquiridor " << std::endl;
         std::cout << "  * escolher inquirido <nome-politico> <partido-politico> " << std::endl;
         std::cout << "  * iniciar debate " << std::endl;
+        std::cout << "  * iniciar DR " << std::endl;
         std::cout << "  * exit" << std::endl;
     }
 
