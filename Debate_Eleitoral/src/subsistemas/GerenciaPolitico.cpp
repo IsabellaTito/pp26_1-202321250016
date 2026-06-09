@@ -68,3 +68,20 @@ shared_ptr<ColaboradorPolitico> GerenciaPolitico::sortearPolitico(){
 
     return escolhido;
 }
+
+void GerenciaPolitico::simularDR(){
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> sorteio(0, 1);
+
+    for (auto& politico: politicos){
+        if(sorteio(gen) == 1){
+            politico->pedirDR();
+            LogSystem::getInstance().registerLog(
+            "Político "
+            + politico->getNome() 
+            + " pediu direito de resposta"
+            );
+        } 
+    }
+}
