@@ -23,4 +23,8 @@ class GerenciaPolitico{
 
         shared_ptr<ColaboradorPolitico> sortearPolitico();
 
+        vector<shared_ptr<ColaboradorPolitico>>& getPoliticos(){return politicos;}
+
+        void simularDR();
+
 };

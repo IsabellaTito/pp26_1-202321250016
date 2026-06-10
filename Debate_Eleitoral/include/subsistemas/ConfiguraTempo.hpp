@@ -7,6 +7,7 @@ class ConfiguraTempo{
         int resposta;
         int replica;
         int treplica;
+        int dr;
 
     public:
 
@@ -15,6 +16,7 @@ class ConfiguraTempo{
             resposta = 0;
             replica = 0;
             treplica = 0;
+            dr = 0;
         }
 
         void setPergunta(int temp){pergunta = temp;}
@@ -28,4 +30,7 @@ class ConfiguraTempo{
 
         void setTreplica(int temp){treplica = temp;}
         int getTreplica() const{return treplica;}
+
+        void setDR(int temp){dr = temp;}
+        int getDR() const{return dr;}
 };

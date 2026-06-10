@@ -8,15 +8,16 @@
 #include "subsistemas/debate/MediadorBase.hpp"
 #include "subsistemas/eleitores/Politico.hpp"
 
-using std::string, std::shared_ptr, std::make_shared;
+using std::string, std::shared_ptr, std::make_shared, std::enable_shared_from_this;
 
-class ColaboradorPolitico : public Politico, public Prototipo{
+class ColaboradorPolitico : public Politico, public Prototipo, public enable_shared_from_this<ColaboradorPolitico> {
     protected:
         string nome;
         string partido;
         bool inquiridor;
         shared_ptr<Microfone>microfone;
         MediadorBase* mediador;
+        bool pedidoDR;
          
     public:
 
@@ -34,10 +35,15 @@ class ColaboradorPolitico : public Politico, public Prototipo{
         bool getInquiridor() const{ return inquiridor;}
 
         void setMediador(MediadorBase* med){mediador = med;}
+        MediadorBase* getMediador(){return mediador;}
 
         void setMicrofone(shared_ptr<Microfone> micro){microfone=micro;}
         bool getMicrofone(){return microfone->getMicrofone();}
 
+        void pedirDR();
+        bool getDR(){return pedidoDR;}
+        void retirarPedidoDR(){pedidoDR = false;}
+        
         shared_ptr<ColaboradorPolitico> clone() const override;
 
 };

@@ -1,13 +1,14 @@
 #pragma once
 
 #include <string>
+#include <memory>
 
 #include "subsistemas/ConfiguraTempo.hpp"
 #include "subsistemas/GerenciaPolitico.hpp"
 #include "subsistemas/debate/MediadorDebate.hpp"
 #include "subsistemas/eleitores/Eleitor.hpp"
 
-using std::string;
+using std::string, std::shared_ptr;
 
 class FachadaDebate{
 
@@ -16,9 +17,9 @@ class FachadaDebate{
 
         ConfiguraTempo config;
         GerenciaPolitico gerenciador;
-        MediadorDebate mediador;
+        shared_ptr<MediadorDebate> mediador;
         
-        FachadaDebate(){}
+        FachadaDebate();
 
         // Impede cópia
         FachadaDebate(const FachadaDebate&) = delete;
@@ -27,11 +28,12 @@ class FachadaDebate{
     public:
 
         static FachadaDebate& getInstance();
-        void configuracaoTempo(int, int, int, int);
+        void configuracaoTempo(int, int, int, int, int);
         void cadastrarPolitico(string, string);
         void cadastrarEleitor(string, string, string, string);
         int sorteioInquiridor();
         void escolherInquirido(string, string);
         void executaDebate();
+        void executarDR();
 
 };

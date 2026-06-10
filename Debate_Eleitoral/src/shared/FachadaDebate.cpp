@@ -8,6 +8,8 @@ using std::to_string, std::cout, std::endl, std::shared_ptr, std::make_shared;
 
 FachadaDebate* FachadaDebate::instance = nullptr;
 
+FachadaDebate::FachadaDebate(){mediador = std::make_shared<MediadorDebate>();} 
+
 FachadaDebate& FachadaDebate::getInstance(){
     if(instance == nullptr){
         instance = new FachadaDebate();
@@ -16,7 +18,7 @@ FachadaDebate& FachadaDebate::getInstance(){
     return *instance;
 }
 
-void FachadaDebate::configuracaoTempo(int pergunta, int resposta, int replica, int treplica){
+void FachadaDebate::configuracaoTempo(int pergunta, int resposta, int replica, int treplica, int dr){
     LogSystem& log = LogSystem::getInstance();
 
     config.setPergunta(pergunta);
@@ -27,11 +29,13 @@ void FachadaDebate::configuracaoTempo(int pergunta, int resposta, int replica, i
     log.registerLog("Tempo de replica setado: " + to_string(replica));
     config.setTreplica(treplica);
     log.registerLog("Tempo de treplica setado: " + to_string(treplica));
+    config.setDR(dr);
+    log.registerLog("Tempo de DR setado: " + to_string(dr));
 
 }
 
 void FachadaDebate::cadastrarPolitico(string nome, string partido){
-    gerenciador.criarPolitico(nome, partido, &mediador);
+    gerenciador.criarPolitico(nome, partido, mediador.get());
     LogSystem::getInstance().registerLog("Politico " + nome + " do partido "+ partido + " foi cadastrado!");
 }
 
@@ -57,7 +61,7 @@ int FachadaDebate::sorteioInquiridor(){
         return 0;
     }
     else{
-        mediador.setInquiridor(escolhido);
+        mediador->setInquiridor(escolhido);
         cout<<"Político sorteado: "<< escolhido->getNome() << " - " << escolhido->getPartido() <<endl;
         return 1;
     }
@@ -71,18 +75,7 @@ void FachadaDebate::escolherInquirido(string nome, string partido){
         return;
     }
 
-    /*
-    auto inq = mediador.getInquiridor();
-
-    if(inq == nullptr){
-        LogSystem::getInstance().registerLog("Nenhum inquiridor definido.");
-        return;
-    }
-    
-    inq->escolhaInquirido(escolhido);
-    */
-
-    mediador.setInquirido(escolhido);
+    mediador->setInquirido(escolhido);
 
     LogSystem::getInstance().registerLog("Político Inquirido: "
         + escolhido->getNome() 
@@ -92,5 +85,15 @@ void FachadaDebate::escolherInquirido(string nome, string partido){
 }
 
 void FachadaDebate::executaDebate(){
-    mediador.debate(config);
+    mediador->debate(config);
+    gerenciador.simularDR();
+}
+
+void FachadaDebate::executarDR(){
+    if((mediador->getListaDR()).empty()){
+        LogSystem::getInstance().registerLog("**Nenhum politico pediu direito de resposta.**");
+        cout<< "**Nenhum politico pediu direito de resposta.**" << endl;
+        return;
+    }
+    mediador->debate(config);
 }
